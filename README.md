@@ -83,7 +83,7 @@ This however, forces Gexpress to expose endpoints in a slightly different way (c
 | app.delete('/foo',..)  | POST /exec/foo&method=DELETE          | triggers auth  | ✓ | ✓ | ✓ | ✓ | ⚠ |
 | app.options('/foo',..) | POST /exec/foo&method=OPTIONS         | triggers auth  | ✓ | ✓ | ✓ | ✓ | ⚠ |
 
-> ⚠ = will trigger `this application was created by another user`-banner if not logged in as appscript-owner (anonymous or collaborator)
+> ⚠ = will trigger `this application was created by another user`-banner if not logged in as appscript-owner
 
 #### Extra anonymous endpoints 
 
