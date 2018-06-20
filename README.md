@@ -51,7 +51,7 @@ Why? Because hackers.
 This forces Gexpress to expose endpoints in a slightly different, but still convenient way:
 
 | Gexpress method | Listens to webrequest(s) | Anonymous webrequest |
-|-|-|
+|-|-|-|
 | app.get('/foo',..)     | GET  /exec?path=/foo            | yes            |
 |                        | GET  /exec/foo                  | triggers login |
 |                        | POST /exec?path=/foo&method=GET | yes            |
