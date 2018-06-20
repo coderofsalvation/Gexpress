@@ -65,9 +65,9 @@ See an overview of (non)authenticated urls below.
 
 ## RESTFUL-ish
 
-Webtraffic to Google Appscript Webapps are limited in many ways. 
-Why? Because hackers.
-This forces Gexpress to expose endpoints in a slightly different way.
+Webtraffic to Google Appscript Webapps are limited/secured in many ways. 
+However, the upside is: free security + free https! =)
+Anyways, this forces Gexpress to expose endpoints in a slightly different way:
 
 #### Authenticated endpoints 
 
