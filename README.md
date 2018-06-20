@@ -44,6 +44,10 @@ function doPost(e){
 
 > NOTE: appscript does not allow async responses, therefore next() can only be used to stop further middleware-execution
 
+## How to include library
+
+
+
 ## RESTFUL-ish
 
 Webtraffic to Google Appscript Webapps are limited in many ways. 
@@ -56,8 +60,12 @@ This forces Gexpress to expose endpoints in a slightly different, but still conv
 |                        | POST /exec?path=/foo&method=GET     | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
 |                        | GET  /exec/foo                      | triggers login | ✓ | ✓ | ✓ | ✓ | ⚠ |
 | app.post('/foo',..)    | POST /exec?path=/foo                | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+|                        | POST /exec/foo                      | triggers login | ✓ | ✓ | ✓ | ✓ | ⚠ |
 | app.put('/foo',..)     | POST /exec?path=/foo&method=PUT     | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+|                        | POST /exec/foo?method=PUT           | triggers login | ✓ | ✓ | ✓ | ✓ | ⚠ |
 | app.delete('/foo',..)  | POST /exec?path=/foo&method=DELETE  | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+|                        | POST /exec/foo?method=DELETE        | triggers login | ✓ | ✓ | ✓ | ✓ | ⚠ |
 | app.options('/foo',..) | POST /exec?path=/foo&method=OPTIONS | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+|                        | POST /exec/foo?method=OPTIONS       | triggers login | ✓ | ✓ | ✓ | ✓ | ⚠ |
 
 > ⚠ = will trigger `this application was created by another user`-banner if not logged in as appscript-owner/collaborator
