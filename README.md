@@ -52,6 +52,10 @@ Add `1Lm_jNmD2FWYF-Kgj7AdHVvLEVXZ4c5AXwzd1KJSb48scn0HLBq64um7S` to your librarie
 
 ## Permissions and users
 
+Make sure you deploy with these settings:
+
+<img src='deploy.png'/>
+
 You can add google users to the appscript, and you're done.
 Rules of thumb:
 
@@ -59,6 +63,7 @@ Rules of thumb:
 * use other urls (`/exec/myadmin` e.g.) urls for authenticated access
 
 The latter will automatically trigger login for anonymous users.
+See an overview of (non)authenticated urls below.
 
 ## RESTFUL-ish
 
