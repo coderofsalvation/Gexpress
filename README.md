@@ -67,7 +67,7 @@ See an overview of (non)authenticated urls below.
 
 Webtraffic to Google Appscript Webapps are limited in many ways. 
 Why? Because hackers.
-This forces Gexpress to expose endpoints in a slightly different.
+This forces Gexpress to expose endpoints in a slightly different way.
 
 #### Authenticated endpoints 
 
@@ -84,7 +84,7 @@ This forces Gexpress to expose endpoints in a slightly different.
 
 #### Extra anonymous endpoints 
 
-> NOTE: disable the following endpoints by initializing Gexpress with `new Gexpress.App({pathToQuery:false})
+> NOTE: disable the following endpoints by initializing Gexpress with `new Gexpress.App({pathToQuery:false})`
 
 | Gexpress method | Listens to webrequest(s) | Anonymous webrequest | application/json | application/javascript | text/xml | text/plain | text/html 
 |-|-|-|-|-|-|-|-|
