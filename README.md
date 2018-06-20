@@ -54,7 +54,7 @@ Make sure you deploy with these settings:
 
 <img src='deploy.png'/>
 
-You can add google users to the appscript, and you're done.
+You can add google users to the appscript (share-button), **re-deploy**, and you're done.
 Rules of thumb:
 
 * use the rooturl (`/exec`) for anonymous access
