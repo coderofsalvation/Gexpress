@@ -65,9 +65,12 @@ See an overview of (non)authenticated urls below.
 
 ## RESTFUL-ish
 
-Webtraffic to Google Appscript Webapps are limited/secured in many ways. 
-However, the upside is: free security + free https! =)
-Anyways, this forces Gexpress to expose endpoints in a slightly different way:
+Webtraffic to Google Appscript Webapps is limited/secured in many ways.
+This is not that bad, given that every appscript gives us:
+
+* free security + free https! =)
+
+This however, forces Gexpress to expose endpoints in a slightly different way (compared to express):
 
 #### Authenticated endpoints 
 
