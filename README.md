@@ -1,5 +1,3 @@
-This appscript library keeps application 'kinda' nodejs-portable
-
 ## Usage
 
 ```
@@ -90,10 +88,10 @@ This forces Gexpress to expose endpoints in a slightly different.
 
 | Gexpress method | Listens to webrequest(s) | Anonymous webrequest | application/json | application/javascript | text/xml | text/plain | text/html 
 |-|-|-|-|-|-|-|-|
-| app.get('/foo',..)     | GET  /exec?path=/foo ☆                | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-|                        | POST /exec?path=/foo&method=GET ☆     | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.post('/foo',..)    | POST /exec?path=/foo ☆                | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.put('/foo',..)     | POST /exec?path=/foo&method=PUT ☆     | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.delete('/foo',..)  | POST /exec?path=/foo&method=DELETE ☆  | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.options('/foo',..) | POST /exec?path=/foo&method=OPTIONS ☆ | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.get('/foo',..)     | GET  /exec?path=/foo                 | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+|                        | POST /exec?path=/foo&method=GET      | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.post('/foo',..)    | POST /exec?path=/foo                 | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.put('/foo',..)     | POST /exec?path=/foo&method=PUT      | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.delete('/foo',..)  | POST /exec?path=/foo&method=DELETE   | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.options('/foo',..) | POST /exec?path=/foo&method=OPTIONS  | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
 
