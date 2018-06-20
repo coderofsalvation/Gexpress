@@ -46,7 +46,9 @@ function doPost(e){
 
 ## How to include library
 
+Add '1Lm_jNmD2FWYF-Kgj7AdHVvLEVXZ4c5AXwzd1KJSb48scn0HLBq64um7S' to your libraries (Resources > Libraries), or edit your manifest file (`View > Show manifest file`) like so:
 
+<img src='include.png'/>
 
 ## RESTFUL-ish
 
