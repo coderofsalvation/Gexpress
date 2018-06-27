@@ -27,9 +27,10 @@ app.get('/client.js', app.client() )
 function doGet(e) { return app.doGet(e)  }
 function doPost(e){ return app.doPost(e) }
 ```
+> .put() .post() .delete() and .options() are also supported (see virtual endpoints)
 
-> .put() .post() .delete() and .options() are also 'kindof' supported (see virtual endpoints)
-
+* /hello [live output](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/hello)^^
+* /client.js [live output](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/client.js)^^
 
 ## Include the library
 
@@ -89,7 +90,7 @@ Usually, you want this when doing browserrequests to Gexpress.
 
 > NOTE: disable the virtual endpoints by initializing Gexpress with `new Gexpress.App({pathToQuery:false})`
 
-## Serving files / templating
+## Regex / Serving files / templating
 
 Appscript has builtin support for templating.
 Serve this `index.html`-file:
@@ -132,18 +133,19 @@ app.get( /.*/, function(req,res,next){ // default to homepage
 Gexpress can automatically generate a browser client, which you can decorate further:
 
 ```
+app.put('/foo', function(req,res,next){   .... })
+
 app.get('/client.js', app.client( function(code){
-  return code
+  return '// foo \n' + code + '\n// bar'
 })
 
 ```
-
 > Now insert `<script src="https://script.google.com/{SCRIPTID}/exec?path=/client.js"></script>` in your html`
 
-The generated client will allow you to do:
+The generated client will allow you to do this:
 
 ```
-  backend.get('/foo').then( alert ).catch( alert) 
+  backend.put('/foo').then( alert ).catch( alert) 
 ```
 
 Just look at the client-source and you will know how to use it.
