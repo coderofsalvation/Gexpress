@@ -2,6 +2,8 @@
 
 ## Usage
 
+Surf to [script.google.com](https://script.google.com), create a script, and copy/paste this:
+
 ```
 var app = new Gexpress.App()
 
