@@ -5,7 +5,10 @@
 Surf to [script.google.com](https://script.google.com), create a script, and copy/paste this:
 
 ```
-var app = new Gexpress.App()
+var app   = new Gexpress.App()
+var cache = CacheService.getScriptCache()
+
+cache.put("/hello", JSON.stringify({date: new Date()}) )
 
 app.use(function(req,res,next){
   req.user = Session.getActiveUser().getEmail()
@@ -13,9 +16,8 @@ app.use(function(req,res,next){
 })
 
 app.get('/ping',function(req,res,next){
-  Logger.log(req)
   res.set('content-type','application/json')
-  res.send( req )
+  res.send( cache.get('/hello') )
   res.end()
 })
 
