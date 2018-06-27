@@ -38,6 +38,8 @@ Add `1Lm_jNmD2FWYF-Kgj7AdHVvLEVXZ4c5AXwzd1KJSb48scn0HLBq64um7S` to your librarie
 
 <img src='include.png'/>
 
+> NOTE: please make sure you select the latest version of the library (see Resources > Libraries)
+
 ## Permissions and users
 
 Make sure you deploy with these settings:
