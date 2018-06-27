@@ -1,3 +1,5 @@
+<img src="gexpress.png"/>
+
 ## Usage
 
 ```
@@ -15,21 +17,6 @@ app.get('/ping',function(req,res,next){
   res.end()
 })
 
-app.get('/js',function(req,res,next){
-  res.set('content-type','application/javascript')
-  res.send( 'console.log("hello world")' )
-  res.end()
-})
-
-app.get( /.*/, function(req,res,next){ // default to homepage
-  Logger.log("defaulting to homepage")
-  var html = HtmlService.createTemplateFromFile('index') // this will get the index.html-file from your appscript project
-  html.title = 'Hello'
-  res.set('content-type','text/html')
-  res.send( html.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL).getContent() )
-  res.end()
-})
-
 function doGet(e) {
   return app.doGet(e)
 }
@@ -37,7 +24,6 @@ function doGet(e) {
 function doPost(e){
   return app.doPost(e)
 }
-
 ```
 
 > NOTE: appscript does not allow async responses, therefore next() can only be used to stop further middleware-execution
@@ -100,3 +86,40 @@ Usually, you want this when doing browserrequests to Gexpress.
 
 > NOTE: disable the virtual endpoints by initializing Gexpress with `new Gexpress.App({pathToQuery:false})`
 
+## Serving files / templating
+
+Appscript has builtin support for templating.
+Serve this `index.html`-file:
+
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+	<title><?= title ?></title>
+  </head>
+  <body>
+    <?!= foo() ?>
+  </body>
+</html>
+
+```
+
+With this endpoint:
+
+
+```
+function foo(){
+  return "Hello world"
+}
+
+app.get( /.*/, function(req,res,next){ // default to homepage
+  Logger.log("defaulting to homepage")
+  var html = HtmlService.createTemplateFromFile('index') // this will get the index.html-file from your appscript project
+  html.title = 'Hello'
+  res.set('content-type','text/html')
+  res.send( html.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL).getContent() )
+  res.end()
+})
+
+```
