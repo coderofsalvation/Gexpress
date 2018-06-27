@@ -19,16 +19,10 @@ app.get('/ping',function(req,res,next){
   res.end()
 })
 
-function doGet(e) {
-  return app.doGet(e)
-}
-
-function doPost(e){
-  return app.doPost(e)
-}
+// this hooks Gexpress into appscript 
+function doGet(e) { return app.doGet(e)  }
+function doPost(e){ return app.doPost(e) }
 ```
-
-> NOTE: appscript does not allow async responses, therefore next() can only be used to stop further middleware-execution
 
 ## How to include library
 
