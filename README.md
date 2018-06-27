@@ -34,11 +34,11 @@ function doPost(e){ return app.doPost(e) }
 
 ## Include the library
 
-Add `1Lm_jNmD2FWYF-Kgj7AdHVvLEVXZ4c5AXwzd1KJSb48scn0HLBq64um7S` to your libraries (Resources > Libraries), or edit your manifest file (`View > Show manifest file`) like so:
+Add `1Lm_jNmD2FWYF-Kgj7AdHVvLEVXZ4c5AXwzd1KJSb48scn0HLBq64um7S` to your libraries (Resources > Libraries).
 
-<img src='include.png'/>
+<img src='include.gif'/>
 
-> NOTE: please make sure you select the latest version of the library (see Resources > Libraries)
+> NOTE: please make sure you select the latest version of the library
 
 ## Permissions and users
 
