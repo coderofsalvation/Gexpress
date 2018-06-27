@@ -29,8 +29,8 @@ function doPost(e){ return app.doPost(e) }
 ```
 > .put() .post() .delete() and .options() are also supported (see virtual endpoints)
 
-* /hello [live output](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/hello)^^
-* /client.js [live output](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/client.js)^^
+* /hello [live output](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/hello)
+* /client.js [live output](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/client.js)
 
 ## Include the library
 
