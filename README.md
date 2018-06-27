@@ -21,6 +21,8 @@ app.get('/hello',function(req,res,next){
   res.end()
 })
 
+app.get('/client.js', app.client() )
+
 // this hooks Gexpress into appscript 
 function doGet(e) { return app.doGet(e)  }
 function doPost(e){ return app.doPost(e) }
@@ -124,3 +126,24 @@ app.get( /.*/, function(req,res,next){ // default to homepage
 })
 
 ```
+
+## Doing requests from the Browser
+
+Gexpress can automatically generate a browser client, which you can decorate further:
+
+```
+app.get('/client.js', app.client( function(code){
+  return code
+})
+
+```
+
+> Now insert `<script src="https://script.google.com/{SCRIPTID}/exec?path=/client.js"></script>` in your html`
+
+The generated client will allow you to do:
+
+```
+  backend.get('/foo').then( alert ).catch( alert) 
+```
+
+Just look at the client-source and you will know how to use it.
