@@ -74,27 +74,29 @@ This however, forces Gexpress to expose endpoints in a slightly different way (c
 
 #### Authenticated endpoints 
 
+| Gexpress method | Listens to webrequest(s) | Anonymous webrequest | CORS | application/json | application/javascript | text/xml | text/plain | text/html 
+|-|-|-|-|-|-|-|-|-|
+| app.get(/.*/,..)       | GET  /exec                            | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.get('/foo',..)     | GET  /exec/foo                        | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.post('/foo',..)    | POST /exec/foo                        | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.put('/foo',..)     | POST /exec/foo&method=PUT             | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.delete('/foo',..)  | POST /exec/foo&method=DELETE          | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.options('/foo',..) | POST /exec/foo&method=OPTIONS         | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+
+#### Virtual CORS anonymous endpoints 
+
+Usually, you want this when doing browserrequests to Gexpress. 
+
 | Gexpress method | Listens to webrequest(s) | Anonymous webrequest | application/json | application/javascript | text/xml | text/plain | text/html 
-|-|-|-|-|-|-|-|-|
-| app.get(/.*/,..)       | GET  /exec                            | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.get('/foo',..)     | GET  /exec/foo                        | triggers auth  | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.post('/foo',..)    | POST /exec/foo                        | triggers auth  | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.put('/foo',..)     | POST /exec/foo&method=PUT             | triggers auth  | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.delete('/foo',..)  | POST /exec/foo&method=DELETE          | triggers auth  | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.options('/foo',..) | POST /exec/foo&method=OPTIONS         | triggers auth  | ✓ | ✓ | ✓ | ✓ | ⚠ |
+|-|-|-|-|-|-|-|-|-|
+| app.get('/foo',..)     | GET  /exec?path=/foo                 | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
+|                        | POST /exec?path=/foo&method=GET      | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.post('/foo',..)    | POST /exec?path=/foo                 | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.put('/foo',..)     | POST /exec?path=/foo&method=PUT      | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.delete('/foo',..)  | POST /exec?path=/foo&method=DELETE   | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.options('/foo',..) | POST /exec?path=/foo&method=OPTIONS  | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
 
 > ⚠ = will trigger `this application was created by another user`-banner if not logged in as appscript-owner
 
-#### Extra anonymous endpoints 
-
-> NOTE: disable the following endpoints by initializing Gexpress with `new Gexpress.App({pathToQuery:false})`
-
-| Gexpress method | Listens to webrequest(s) | Anonymous webrequest | application/json | application/javascript | text/xml | text/plain | text/html 
-|-|-|-|-|-|-|-|-|
-| app.get('/foo',..)     | GET  /exec?path=/foo                 | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-|                        | POST /exec?path=/foo&method=GET      | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.post('/foo',..)    | POST /exec?path=/foo                 | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.put('/foo',..)     | POST /exec?path=/foo&method=PUT      | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.delete('/foo',..)  | POST /exec?path=/foo&method=DELETE   | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.options('/foo',..) | POST /exec?path=/foo&method=OPTIONS  | ✓              | ✓ | ✓ | ✓ | ✓ | ⚠ |
+> NOTE: disable the virtual endpoints by initializing Gexpress with `new Gexpress.App({pathToQuery:false})`
 
