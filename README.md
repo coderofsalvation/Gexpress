@@ -2,7 +2,7 @@
 
 ## Usage
 
-Surf to [script.google.com](https://script.google.com), create a script, and copy/paste this:
+Surf to [script.google.com](https://script.google.com), create a script, and copy/paste this into Code.gs:
 
 ```
 var app   = new Gexpress.App()
@@ -29,8 +29,14 @@ function doPost(e){ return app.doPost(e) }
 ```
 > .put() .post() .delete() and .options() are also supported (see virtual endpoints)
 
-* /hello [live output](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/hello)
-* /client.js [live output](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/client.js)
+This creates these urls:
+
+* anonymous: [?path=/hello](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/hello)
+* anonymous: [?path=/client.js](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec?path=/client.js)
+* authenticated: [/hello](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec/hello)
+* authenticated: [/client.js](https://script.google.com/macros/s/AKfycbziqV-T6HudofXLfmMoQS4_AL68f_x6CUlJYIzs2Q-SYaHoWBgq/exec/client.js)
+
+> click the urls to see live demo output
 
 ## Include the library
 
@@ -94,7 +100,7 @@ Usually, you want this when doing browserrequests to Gexpress.
 
 ## Regex / Serving files / templating
 
-Appscript has builtin support for templating.
+Appscript has builtin support for templating, here's a simple example.
 Serve this `index.html`-file:
 
 ```
@@ -138,7 +144,7 @@ Gexpress can automatically generate a browser client, which you can decorate fur
 app.put('/foo', function(req,res,next){   .... })
 
 app.get('/client.js', app.client( function(code){
-  return '// foo \n' + code + '\n// bar'
+  return ' ' + code + ' '
 })
 
 ```
@@ -151,3 +157,6 @@ The generated client will allow you to do this:
 ```
 
 Just look at the client-source and you will know how to use it.
+
+> NOTE: Always make sure you create a new deployment before testing changes. Development-urls (ending with `/dev`) do not allow POST requests (`post(),put(),delete()` in our case). This is an appscript limitation.
+Hence the client will always use the `/exec`-url production url. 
