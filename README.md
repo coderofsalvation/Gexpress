@@ -141,7 +141,7 @@ app.get( /.*/, function(req,res,next){ // default to homepage
 Gexpress can automatically generate a browser client, which you can decorate further:
 
 ```
-app.put('/foo', function(req,res,next){   .... })
+app.put('/foo', function(req,res,next){   .... }, true)      // note: true includes endpoint into client.js
 
 app.get('/client.js', app.client( function(code){
   return ' ' + code + ' '
