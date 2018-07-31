@@ -94,7 +94,7 @@ Usually, you want this when doing browserrequests to Gexpress.
 | app.delete('/foo',..)  | POST /exec?path=/foo&method=DELETE   | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
 | app.options('/foo',..) | POST /exec?path=/foo&method=OPTIONS  | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
 
-> ⚠ = will trigger `this application was created by another user`-banner if not logged in as appscript-owner
+> ⚠ = will trigger `this application was created by another user`-banner if not logged in as appscript-owner. See chapter 'Banner 101'
 
 > NOTE: disable the virtual endpoints by initializing Gexpress with `new Gexpress.App({pathToQuery:false})`
 
@@ -160,3 +160,10 @@ Just look at the client-source and you will know how to use it.
 
 > NOTE: Always make sure you create a new deployment before testing changes. Development-urls (ending with `/dev`) do not allow POST requests (`post(),put(),delete()` in our case). This is an appscript limitation.
 Hence the client will always use the `/exec`-url production url. 
+
+## Banner 101
+
+In order to get rid of the banner, you can do 2 things:
+
+* create a google site and include the script
+* include the script as an iframe on another domain (host on gitlab/github/bitbucket page e.g.)
