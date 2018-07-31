@@ -23,6 +23,12 @@ app.get('/hello',function(req,res,next){
 
 app.get('/client.js', app.client() )
 
+app.get(/.*/, function(req,res,next){
+  res.set('content-type','text/html')
+  res.send("<html><body><h1>Hello</h1></body></html>") // see docs for template-usage & banner-removal
+  res.end()
+})
+
 // this hooks Gexpress into appscript 
 function doGet(e) { return app.doGet(e)  }
 function doPost(e){ return app.doPost(e) }
