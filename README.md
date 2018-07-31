@@ -19,7 +19,7 @@ app.get('/hello',function(req,res,next){
   res.set('content-type','application/json')
   res.send( cache.get('/hello') )
   res.end()
-})
+},true)
 
 app.get('/client.js', app.client() )
 
