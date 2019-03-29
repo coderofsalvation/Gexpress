@@ -121,8 +121,8 @@ With this endpoint:
 
 
 ```
-function foo(){
-  return "Hello world"
+function foo(id){
+  return "Hello world "+id
 }
 
 app.get( /.*/, function(req,res,next){ // default to homepage
@@ -136,17 +136,22 @@ app.get( /.*/, function(req,res,next){ // default to homepage
 
 ```
 
+## Retrieving url arguments
+
+| route                | url request | req.url value | req.route value | retrieve data | note |
+|-|-|-|-|-|-|
+| app.get('/foo')      | GET /foo?bar=1 | /foo       | /foo           | req.query.bar  |      |
+| app.get('/foo')      | GET /foo/123   | /foo       | /foo/:id       | req.params.id  | :id is automatically detected |
+| app.get('/foo/:foo') | GET /foo/123   | /foo       | /foo/:foo      | req.params.foo |  |
+
 ## Doing requests from the Browser
 
-Gexpress can automatically generate a browser client, which you can decorate further:
+Gexpress can automatically generate a browser client (see `app.client()` above), which you can decorate further:
 
 ```
-app.put('/foo', function(req,res,next){   .... })
-
 app.get('/client.js', app.client( function(code){
-  return ' ' + code + ' '
+  return ' ' + code + ' ' 
 })
-
 ```
 > Now insert `<script src="https://script.google.com/{SCRIPTID}/exec?path=/client.js"></script>` in your html`
 
