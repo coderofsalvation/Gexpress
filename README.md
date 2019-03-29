@@ -159,9 +159,9 @@ app.get( /.*/, function(req,res,next){ // default to homepage
 | app.get('/foo')      | GET /foo/123   | /foo       | /foo/:id       | req.params.id  | :id is automatically detected |
 | app.get('/foo/:foo') | GET /foo/123   | /foo       | /foo/:foo      | req.params.foo |  |
 
-## Doing requests from the Browser
+## Generate Browser JS client 
 
-Gexpress can automatically generate a browser client (see `app.client()` above), which you can decorate further:
+Gexpress can automatically generate a client (see `app.client()` above), which you can decorate further:
 
 ```
 app.put('/foo', function(req,res,next){   .... }, true)      // note: true includes endpoint into client.js
@@ -170,18 +170,51 @@ app.get('/client.js', app.client( function(code){
   return ' ' + code + ' ' 
 })
 ```
+
 > Now insert `<script src="https://script.google.com/{SCRIPTID}/exec?path=/client.js"></script>` in your html`
 
 The generated client will allow you to do this:
 
 ```
-  backend.put('/foo').then( alert ).catch( alert) 
+  backend.post('/foo',{bar:1}).then( alert ).catch( alert) 
 ```
 
-Just look at the client-source and you will know how to use it.
+Just look at the client-source and you'll see some examples.
 
 > NOTE: Always make sure you create a new deployment before testing changes. Development-urls (ending with `/dev`) do not allow POST requests (`post(),put(),delete()` in our case). This is an appscript limitation.
 Hence the client will always use the `/exec`-url production url. 
+
+## Generate Node.js client 
+
+Install node-tech, and download the client.js-contents of above locally (the script-tag src-url), and save it into file `client.js`.
+
+    $ npm install node-fetch --save
+    $ curl -L 'https://script.google.com/{SCRIPTID}/exec?path=/client.js' > client.js
+
+Then create a file called mynodescript.js:
+```
+    var gclient = require('./client.js')(require('node-fetch'))
+    gclient.get('/foo')
+    .then(  console.dir )
+    .catch( console.dir )
+
+    /* outputs:
+     *
+     * { limit: '3',
+     *   offset: '0',
+     *   order: 'date_modify DESC',
+     *   nitems: 3,
+     *   items:
+     *    [ { '#': '1',
+     *        name_first: '...',
+     *        name_last: '...',
+     *      }, 
+     *      { '#': '45',
+     *      ....
+     */
+```
+
+> Voila!
 
 ## Middleware
 
