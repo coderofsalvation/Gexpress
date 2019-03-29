@@ -174,9 +174,15 @@ Just look at the client-source and you will know how to use it.
 > NOTE: Always make sure you create a new deployment before testing changes. Development-urls (ending with `/dev`) do not allow POST requests (`post(),put(),delete()` in our case). This is an appscript limitation.
 Hence the client will always use the `/exec`-url production url. 
 
+## Middleware
+
+| middleware | info |
+|-|-|
+| [Gexpress-middleware-RESTsheet](https://github.com/coderofsalvation/Gexpress-middleware-RESTsheet) | exposes spreadsheet as REST endpoints |
+
 ## Banner 101
 
-In order to get rid of the banner, you can do 2 things:
+In order to get rid of the (not made by google) banner, you can do 2 things:
 
 * create a google site and include the script
 * include the script as an iframe on another domain (host on gitlab/github/bitbucket page e.g.)
