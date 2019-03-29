@@ -104,6 +104,15 @@ Usually, you want this when doing browserrequests to Gexpress.
 
 > NOTE: disable the virtual endpoints by initializing Gexpress with `new Gexpress.App({pathToQuery:false})`
 
+## Accessing data from requests 
+
+| example | retrieval |
+|-|-|
+| GET /exec?path=/foo&bar=1 | req.query.path, req.query.bar |
+| POST /exec?path=/foo&bar=1 {...} | req.query.path, req.query.bar, req.body |
+| PUT /exec?path=/foo&method=PUT&bar=1 {...} | req.query.path, req.query.bar, req.body |
+| DELETE /exec?path=/foo&method=DELETE&bar=1 {...} | req.query.path, req.query.bar, req.body |
+
 ## Regex / Serving files / templating
 
 Appscript has builtin support for templating, here's a simple example.
