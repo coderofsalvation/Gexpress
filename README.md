@@ -11,6 +11,9 @@ var cache = CacheService.getScriptCache()
 cache.put("/hello", JSON.stringify({date: new Date()}) )
 
 app.use(function(req,res,next){
+  req.user = {email:Session.getActiveUser().getEmail()}
+  next()
+})
   req.user = Session.getActiveUser().getEmail()
   next()
 })
@@ -74,22 +77,9 @@ This is not that bad, given that every appscript gives us:
 
 * free security + free https! =)
 
-This however, forces Gexpress to expose endpoints in a slightly different way (compared to express):
-
-#### Authenticated endpoints 
-
-| Gexpress method | Listens to webrequest(s) | Anonymous webrequest | CORS | application/json | application/javascript | text/xml | text/plain | text/html 
-|-|-|-|-|-|-|-|-|-|
-| app.get(/.*/,..)       | GET  /exec                            | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.get('/foo',..)     | GET  /exec/foo                        | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.post('/foo',..)    | POST /exec/foo                        | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.put('/foo',..)     | POST /exec/foo&method=PUT             | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.delete('/foo',..)  | POST /exec/foo&method=DELETE          | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
-| app.options('/foo',..) | POST /exec/foo&method=OPTIONS         | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
-
 #### Virtual CORS anonymous endpoints 
 
-Usually, you want this when doing browserrequests to Gexpress. 
+By default, Gexpress exposes endpoints in a slightly different way (compared to express):
 
 | Gexpress method | Listens to webrequest(s) | Anonymous webrequest | CORS | application/json | application/javascript | text/xml | text/plain | text/html 
 |-|-|-|-|-|-|-|-|-|
@@ -102,16 +92,39 @@ Usually, you want this when doing browserrequests to Gexpress.
 
 > ⚠ = will trigger `this application was created by another user`-banner if not logged in as appscript-owner. See chapter 'Banner 101'
 
+If you really want 100% restful endpoints, see the following section.
+
+#### Authenticated endpoints 
+
+If you only want authenticated (gsuite) users to access your webapp (see settings in Publish > Deploy as webapp), then these are the exposed endpoints:
+
+| Gexpress method | Listens to webrequest(s) | Anonymous webrequest | CORS | application/json | application/javascript | text/xml | text/plain | text/html 
+|-|-|-|-|-|-|-|-|-|
+| app.get(/.*/,..)       | GET  /exec                            | ✓              | ✓ | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.get('/foo',..)     | GET  /exec/foo                        | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.post('/foo',..)    | POST /exec/foo                        | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.put('/foo',..)     | POST /exec/foo&method=PUT             | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.delete('/foo',..)  | POST /exec/foo&method=DELETE          | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+| app.options('/foo',..) | POST /exec/foo&method=OPTIONS         | triggers auth  |   | ✓ | ✓ | ✓ | ✓ | ⚠ |
+
 > NOTE: disable the virtual endpoints by initializing Gexpress with `new Gexpress.App({pathToQuery:false})`
 
 ## Accessing data from requests 
 
 | example | retrieval |
 |-|-|
+| GET /exec?path=/foo/12 | req.query.path, req.params.id |
 | GET /exec?path=/foo&bar=1 | req.query.path, req.query.bar |
 | POST /exec?path=/foo&bar=1 {...} | req.query.path, req.query.bar, req.body |
 | PUT /exec?path=/foo&method=PUT&bar=1 {...} | req.query.path, req.query.bar, req.body |
 | DELETE /exec?path=/foo&method=DELETE&bar=1 {...} | req.query.path, req.query.bar, req.body |
+
+> use this middleware to log requests (View > Logs)
+
+    app.use(function(req,res,next){
+      Logger.log( req.method+" "+req.url+" "+(req.route ? "("+req.route+")":"")+" "+JSON.stringify(req.params) )
+      next()
+    })
 
 ## Regex / Serving files / templating
 
