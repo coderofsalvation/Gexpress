@@ -189,7 +189,11 @@ app.get('/client.js', app.client( function(code){
 The generated client will allow you to do this:
 
 ```
-  backend.post('/foo',{bar:1}).then( alert ).catch( alert) 
+  gclient.get('/foo'}).then( alert ).catch( alert) 
+  gclient.get('/foo/123'}).then( alert ).catch( alert) 
+  gclient.post('/foo',{bar:1}).then( alert ).catch( alert) 
+  gclient.put('/foo/123',{bar:2}).then( alert ).catch( alert) 
+  gclient.delete('/foo/123').then( alert ).catch( alert) 
 ```
 
 Just look at the client-source and you'll see some examples.
