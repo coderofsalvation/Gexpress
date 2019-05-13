@@ -55,6 +55,13 @@ Add `1Lm_jNmD2FWYF-Kgj7AdHVvLEVXZ4c5AXwzd1KJSb48scn0HLBq64um7S` to your librarie
 
 > NOTE: please make sure you select the latest version of the library
 
+## Debugging
+
+Use [BetterLog](https://github.com/peterherrmann/BetterLog) to easily log into a spreadsheet (because Logger.log does not always work inside `doGet()` and `doPost()`)
+
+    Logger = BetterLog.useSpreadsheet('1gUQI4SUyQbIoNYwUHORgl') // spreadsheet id
+    Logger.log("hello world")
+
 ## Permissions and users
 
 Make sure you deploy with these settings:
