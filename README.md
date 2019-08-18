@@ -4,7 +4,7 @@
 
 Surf to [script.google.com](https://script.google.com), create a script, and copy/paste this into Code.gs:
 
-```
+```js
 var app   = new Gexpress.App()
 var cache = CacheService.getScriptCache()
 
@@ -138,7 +138,7 @@ If you only want authenticated (gsuite) users to access your webapp (see setting
 Appscript has builtin support for templating, here's a simple example.
 Serve this `index.html`-file:
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -155,7 +155,7 @@ Serve this `index.html`-file:
 With this endpoint:
 
 
-```
+```js
 function foo(id){
   return "Hello world "+id
 }
@@ -183,7 +183,7 @@ app.get( /.*/, function(req,res,next){ // default to homepage
 
 Gexpress can automatically generate a client (see `app.client()` above), which you can decorate further:
 
-```
+```js
 app.put('/foo', function(req,res,next){   .... }, true)      // note: true includes endpoint into client.js
 
 app.get('/client.js', app.client( function(code){
@@ -195,7 +195,7 @@ app.get('/client.js', app.client( function(code){
 
 The generated client will allow you to do this:
 
-```
+```js
   gclient.get('/foo'}).then( alert ).catch( alert) 
   gclient.get('/foo/123'}).then( alert ).catch( alert) 
   gclient.post('/foo',{bar:1}).then( alert ).catch( alert) 
@@ -216,7 +216,7 @@ Install node-tech, and download the client.js-contents of above locally (the scr
     $ curl -L 'https://script.google.com/{SCRIPTID}/exec?path=/client.js' > client.js
 
 Then create a file called mynodescript.js:
-```
+```js
     var gclient = require('./client.js')(require('node-fetch'))
     gclient.get('/foo')
     .then(  console.dir )
