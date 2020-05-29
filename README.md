@@ -14,9 +14,6 @@ app.use(function(req,res,next){
   req.user = {email:Session.getActiveUser().getEmail()}
   next()
 })
-  req.user = Session.getActiveUser().getEmail()
-  next()
-})
 
 app.get('/hello',function(req,res,next){
   res.set('content-type','application/json')
